@@ -13,3 +13,41 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String @unique
+  palletes PalleteTonal[]
+  likes Like[]
+
+}
+
+model PalleteTonal {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Cores da Paleta
+  colors String[]
+
+  // Campos de refencia estrangeiras
+  authorID String @db.ObjectId
+
+   // Define as relações onde os campos pegara a referencia do tipo
+  author User @relation(fields: [authorID], references: [id])
+
+  likes Like[]
+}
+
+model Like {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Campos de refencia estrangeiras
+  userID String @db.ObjectId
+  palleteTonalID String @db.ObjectId
+
+  // Define as relações onde os campos pegara a referencia do tipo
+  user User @relation(fields: [userID], references: [id])
+  palleteTonal PalleteTonal @relation(fields: [palleteTonalID], references: [id])
+
+  @@unique([userID,palleteTonalID])
+}
