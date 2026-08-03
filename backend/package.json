@@ -5,6 +5,14 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev backend": "node --watch server.js1"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "prisma": "^6.19.2"
   }
 }
