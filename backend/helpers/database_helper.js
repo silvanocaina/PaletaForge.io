@@ -18,4 +18,6 @@ export async function get_users_dto(prisma) {
       name: user.name
     }
   })
+
+  return secure_users
 }
