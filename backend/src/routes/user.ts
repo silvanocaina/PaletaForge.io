@@ -1,6 +1,7 @@
+
 import express from 'express'
 import {PrismaClient} from "../generated/prisma/client.js"
-import { reply_status_500 } from '../helpers/api_helper'
+import { reply_status_500 } from '../helpers/api_helper.js'
 import { get_users_dto} from '../helpers/database_helper.js'
 
 const app = express();
@@ -27,7 +28,6 @@ app.post('/usuarios', async (req, res) => {
       data: {
         name: req.body.name,
         email: req.body.email,
-        age: req.body.age,
 
       }
     })

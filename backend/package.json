@@ -3,18 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev backend": "node --watch server.js1"
+    "dev": "tsx watch src/server.ts",
+    "build": "npx tsc",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@prisma/client": "^6.19.2",
-    "express": "^5.2.1"
+    "express": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^26.1.2",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.20.1",
     "prisma": "^6.19.2",
-    "typescript": "^7.0.2"
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
   }
 }
