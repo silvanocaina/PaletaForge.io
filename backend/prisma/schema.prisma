@@ -16,29 +16,40 @@ datasource db {
 
 model User {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
+
   name String
+  about String
   email String @unique
+
   palletes PalleteTonal[]
   likes Like[]
   auth Auth?
+
+  createdAt      DateTime @default(now()) // Data que o registro foi criada
+  updatedAt      DateTime @updatedAt // Data que o registro foi modificado pela ultima vez
 
 }
 
 model Auth {
   id     String   @id @default(auto()) @map("_id") @db.ObjectId
+
   userID String   @unique @db.ObjectId
   user   User     @relation(fields: [userID], references: [id])
   hash   String
 
   failedAttempts Int      @default(0) // Tentativas falhas ao tentar logar
   lockedUntil    DateTime? // Guarda o tempo para tentar logar denovo
-  createdAt      DateTime @default(now()) // Data que o registro de autenticação foi criada
+
+  createdAt      DateTime @default(now()) // Data que o registro foi criada
   updatedAt      DateTime @updatedAt // Data que o registro foi modificado pela ultima vez
   passwordChangedAt DateTime @default(now()) // Data que a senha foi modificada pela ultima vez
 }
 
 model PalleteTonal {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name String
+  description String
 
   // Cores da Paleta
   colors String[]
@@ -50,6 +61,8 @@ model PalleteTonal {
   author User @relation(fields: [authorID], references: [id])
 
   likes Like[]
+  createdAt      DateTime @default(now()) // Data que o registro foi criada
+  updatedAt      DateTime @updatedAt // Data que o registro foi modificado pela ultima vez
 }
 
 model Like {
@@ -62,6 +75,8 @@ model Like {
   // Define as relações onde os campos pegara a referencia do tipo
   user User @relation(fields: [userID], references: [id])
   palleteTonal PalleteTonal @relation(fields: [palleteTonalID], references: [id])
+
+  createdAt      DateTime @default(now()) // Data que o registro foi criada
 
   @@unique([userID,palleteTonalID])
 }
