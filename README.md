@@ -5,8 +5,24 @@
 Projeto de paleta de cores, em full stack para testar meus conhecimento teorico na pratica
 
 ## Tecnologias
+As tecnologias usada no projeto
+### Frontend
 
-[![My Skills](https://skillicons.dev/icons?i=html,css,js,nodejs,express,prisma,mongodb)](https://skillicons.dev)
+No lado cliente
+</br>
+
+[![My Skills](https://skillicons.dev/icons?i=nodejs,react)](https://skillicons.dev)
+### Backend
+
+No lado servidor
+</br>
+
+[![My Skills](https://skillicons.dev/icons?i=typescript,nodejs,express,prisma,mongodb)](https://skillicons.dev)
+</hr>
+
+Outras libs
+* argon2: para derivar as senhas, aplicar um custo computacional para tentativa de senha, difucultando ataque de força bruta por ASIC/GPU com a utilização da variante argon2id
+* zod: para validação de dados
 
 ## Avisos
 
