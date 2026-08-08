@@ -2,8 +2,6 @@ import dotenv from 'dotenv/config'
 import express from 'express'
 import userRoutes from './routes/user.js'
 
-process.env.DATABASE_URL // carrega
-process.env.JWT_SECRET
 
 const app = express();
 app.use(express.json()) // Faz o json do corpo ser lido
