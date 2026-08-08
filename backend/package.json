@@ -8,7 +8,8 @@
     "dev": "tsx watch src/server.ts",
     "build": "npx tsc",
     "start": "node dist/server.js",
-    "generate-env": "tsx src/scripts/generate_example_env.ts"
+    "generate-env": "tsx src/scripts/generate_example_env.ts",
+    "db-reset": "npx prisma db push --force-reset"
   },
   "dependencies": {
     "@prisma/client": "^6.19.2",
