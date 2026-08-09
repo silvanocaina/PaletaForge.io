@@ -1,3 +1,4 @@
+import { abort } from 'node:process';
 import { PrismaClient } from '../generated/prisma/client.js'
 
 // ##########################
@@ -20,4 +21,31 @@ export async function get_users_dto(prisma: PrismaClient) {
   })
 
   return secure_users
+}
+
+export async function get_single_user_dto(prisma: PrismaClient, id: string) {
+  const unsecure_user = await prisma.user.findUniqueOrThrow({
+    where: {
+      id: id
+    }
+  })
+
+  const palletes_tonals = await prisma.palleteTonal.findMany({
+    where: {
+      authorID: unsecure_user.id
+    },
+    omit: {
+      createdAt: true,
+      updatedAt: true,
+      authorID: true,
+
+    }
+  })
+
+  return {
+    id: unsecure_user.id,
+    name: unsecure_user.name,
+    about: unsecure_user.about,
+    pallete_tonals: palletes_tonals
+  }
 }
