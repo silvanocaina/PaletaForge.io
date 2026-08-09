@@ -19,6 +19,7 @@ const prisma = new PrismaClient();
 // ###  Métodos para usuarios  ##
 // ##############################
 
+// Obtém todos os usuarios sanietizadas sem as informações sensiveis
 router.get("/usuarios", async (req, res) => {
   try {
     const users = get_users_dto(prisma);
@@ -78,9 +79,8 @@ router.post("/usuario", async (req, res) => {
       switch (error.code) {
         case "P2002": // Email ou username ja sendo utilizado por outra pessoas
           reply_status_409(res,'Email ou username já esta sendo utilizado por outro usuario');
-          break;
+          return;
       }
-      return;
     }
 
     // resposta padrão
