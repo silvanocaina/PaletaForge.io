@@ -7,8 +7,8 @@ import { PrismaClient } from '../generated/prisma/client.js'
 
 /**
  * Obtém no banco de dados os usuarios de forma segura, com informações sensiveis excluidas
- * @param {PrismaClient} prisma
- * @returns {object[]} Retornar array de usuarios prontos para ser transferido externamente
+ * @param prisma o prisma
+ * @returns Retornar array de usuarios prontos para ser transferido externamente
  */
 export async function get_users_dto(prisma: PrismaClient) {
   const unsecure_users = await prisma.user.findMany();
@@ -23,6 +23,12 @@ export async function get_users_dto(prisma: PrismaClient) {
   return secure_users
 }
 
+/**
+ * Obtém um unico usuario pelo seu id
+ * @param prisma o prisma
+ * @param id id do usuario
+ * @returns Retornar um usuario
+ */
 export async function get_single_user_dto(prisma: PrismaClient, id: string) {
   const unsecure_user = await prisma.user.findUniqueOrThrow({
     where: {
