@@ -1,4 +1,4 @@
-function Page() {
+function FeedPage() {
   return (
     <>
 
@@ -6,4 +6,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default FeedPage;
