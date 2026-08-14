@@ -1,0 +1,43 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    --safe-text-color: color-mix(in srgb, var(--gunmetal) 20%, white 80%);
+}
+
+#title {
+    color: var(--safe-text-color);
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#text {
+    color: var(--safe-text-color);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#sign-in {
+    margin: 0px 2px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+#sign-in {
+    color: var(--safe-text-color);
+}
+
+#sign-in a {
+    color: color-mix(in srgb, var(--gunmetal) 40%, white 70%);
+}
