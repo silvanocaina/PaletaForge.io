@@ -1,10 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
+import CreateUserPage from "./pages/createUser";
+import FeedPage from "./pages/feed";
+import AuthUserPage from "./pages/auth";
 
 function App() {
   return (
-    <>
-      <h1>Começo do projeto</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<FeedPage />} />
+        <Route path="/user/auth" element={<AuthUserPage />} />
+        <Route path="/user/create" element={<CreateUserPage/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
