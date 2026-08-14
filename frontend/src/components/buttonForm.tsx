@@ -6,7 +6,7 @@ interface ButtonFormProps{
 
 function ButtonForm({ id, value }: ButtonFormProps) {
   return (
-    <input id={id} type='submit' value={value} />
+    <input id={id} type='submit' value={value} className='button-form' />
   );
 
 }

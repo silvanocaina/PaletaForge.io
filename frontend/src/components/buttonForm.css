@@ -1,4 +1,4 @@
-input {
+.button-form {
     margin-top: 15px;
     background-color: color-mix(in srgb, var(--onyx) 60%, var(--shadow-grey) 40%);
     color: color-mix(in srgb, var(--gunmetal) 20%, white 80%);
@@ -9,7 +9,7 @@ input {
     border: none;
 }
 
-input:hover {
+.button-form {
     opacity: 0.75;
     cursor: pointer;
 }
