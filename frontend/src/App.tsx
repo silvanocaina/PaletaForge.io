@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 import CreateUserPage from "./pages/createUser";
 import FeedPage from "./pages/feed";
-import AuthUserPage from "./pages/auth";
+import AuthUserPage from "./pages/authUser";
 
 function App() {
   return (
