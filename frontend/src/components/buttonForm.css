@@ -1,5 +1,5 @@
 .button-form {
-    margin-top: 15px;
+    margin-top: 30px;
     background-color: color-mix(in srgb, var(--onyx) 60%, var(--shadow-grey) 40%);
     color: color-mix(in srgb, var(--gunmetal) 20%, white 80%);
     font-weight: 500;
@@ -9,7 +9,7 @@
     border: none;
 }
 
-.button-form {
-    opacity: 0.75;
+.button-form:hover {
+    opacity: 0.8;
     cursor: pointer;
 }
