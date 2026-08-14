@@ -1,0 +1,15 @@
+input {
+    margin-top: 15px;
+    background-color: color-mix(in srgb, var(--onyx) 60%, var(--shadow-grey) 40%);
+    color: color-mix(in srgb, var(--gunmetal) 20%, white 80%);
+    font-weight: 500;
+    width: 100%;
+    padding: 10px 8px;
+    border-radius: 4px;
+    border: none;
+}
+
+input:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}

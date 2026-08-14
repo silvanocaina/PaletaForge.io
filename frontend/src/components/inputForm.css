@@ -1,0 +1,15 @@
+.label {
+    margin: 0px 2px;
+    color:color-mix(in srgb, var(--graphite) 50%, white 50%);
+    font-weight: 500;
+}
+
+.input {
+    background-color: color-mix(in srgb, var(--graphite) 70%, black 50%);
+    border: 1px solid var(--graphite);
+    color: color-mix(in srgb, var(--gunmetal) 20%, white 80%);
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
