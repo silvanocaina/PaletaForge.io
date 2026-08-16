@@ -1,6 +1,7 @@
 import { useId, useState, type HTMLInputTypeAttribute } from "react";
 import "./inputForm.css";
 import { usePasswordStrength } from "../utils/passwordEntropy";
+import type {  ZodString } from "zod";
 
 const STRENGTH_LABELS = [
   "Muito fraca",
@@ -15,6 +16,7 @@ interface InputFormProps {
   name: string;
   type: HTMLInputTypeAttribute;
   labelText: string;
+  rules?: ZodString;
   showEntropy?: boolean;
 }
 
@@ -22,42 +24,66 @@ function InputForm({
   name,
   type,
   labelText,
+  rules,
   showEntropy,
 }: InputFormProps) {
   // Numerico para id
   const useID = useId();
 
-  //
+  // Estado do valor
   const [value, setValue] = useState("");
 
   // Condição
   const _showEntropy = showEntropy && type == "password";
 
+
   let score = 0;
 
   if (_showEntropy) {
-    const result = usePasswordStrength(value)
+    const result = usePasswordStrength(value);
     if (result) {
       score = result.score;
     }
   }
+
+  let rules_error:string|null = null;
+
+  if (rules) {
+    const parseResult = rules.safeParse(value);
+
+    if (!parseResult.success) {
+      rules_error = parseResult.error.issues[0].message;
+    }
+  }
+  const showedInformation: boolean = (_showEntropy || rules_error);
 
   return (
     <>
       <label
         htmlFor={useID}
         className="label"
-        style={_showEntropy ? { justifyContent: "space-between" } : {}}
+        style={showedInformation ? { justifyContent: "space-between" } : {}}
       >
-        {_showEntropy ? (
-          <>
-            {labelText}
-
-            <p style={{color: STRENGTH_COLORS[score]}}>{STRENGTH_LABELS[score]}</p>
-          </>
-        ) : (
-          labelText
-        )}
+        {
+          // Analisa se a uma informação para mostrar
+          (showedInformation) && value.length > 0 ? (
+            <>
+              {labelText}
+              {
+                // Prioriza o erro de regra ao inves de mostrar a força da entropia
+                rules_error ? (
+                  <p style={{ color: STRENGTH_COLORS[0] }}>{rules_error}</p>
+                ) : (
+                  <p style={{ color: STRENGTH_COLORS[score] }}>
+                    {STRENGTH_LABELS[score]}
+                  </p>
+                )
+              }
+            </>
+          ) : (
+            labelText
+          )
+        }
       </label>
       <br />
       <input
@@ -71,7 +97,5 @@ function InputForm({
     </>
   );
 }
-
-
 
 export default InputForm;
