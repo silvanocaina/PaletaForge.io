@@ -15,9 +15,9 @@ function CreateUserPage() {
         <SpotlightForm width={500} height={500} submit={submitEvent}>
           <h2 id="title">Bem Vindo</h2>
           <p id="text">Crie para começar sua jornada</p>
-          <InputForm id="fname" name="username" type="text" labelText="Nome do usuario" />
-          <InputForm id="femail" name="email" type="email" labelText="E-mail"/>
-          <InputForm id="fpassword" name="password" type="password" labelText="Senha" />
+          <InputForm name="username" type="text" labelText="Nome do usuario" />
+          <InputForm name="email" type="email" labelText="E-mail"/>
+          <InputForm name="password" type="password" labelText="Senha" showEntropy={true} />
           <ButtonForm value="Criar" id="fsubmit" />
           <div id="sign-in">
             <p>Você já tem uma conta? </p>

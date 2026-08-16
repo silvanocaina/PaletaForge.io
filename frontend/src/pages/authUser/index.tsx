@@ -15,8 +15,8 @@ function AuthUserPage() {
         <SpotlightForm width={500} height={425} submit={submitEvent}>
           <h2 id="title">Bem Vindo</h2>
           <p id="text">Entre para explorar um mundo rico de cores</p>
-          <InputForm id="femail" name="email" type="email" labelText="E-mail"/>
-          <InputForm id="fpassword" name="password" type="password" labelText="Senha" />
+          <InputForm  name="email" type="email" labelText="E-mail"/>
+          <InputForm  name="password" type="password" labelText="Senha" />
           <ButtonForm value="Autenticar" id="fsubmit" />
           <div id="sign-in">
             <p>Você não tem uma conta? </p>
