@@ -42,7 +42,7 @@ router.post("/usuario", async (req, res) => {
   try {
     // validamos os dados recebidos do frontend
     const data = CreateUser.parse({
-      name: req.body.name,
+      username: req.body.username,
       password: req.body.password,
       email: req.body.email,
       about: req.body.about,
@@ -53,7 +53,7 @@ router.post("/usuario", async (req, res) => {
 
     const newUser = await prisma.user.create({
       data: {
-        name: data.name,
+        name: data.username,
         email: data.email,
         about: data.about ?? null,
         auth: {
@@ -68,9 +68,15 @@ router.post("/usuario", async (req, res) => {
       expiresIn: "7d",
     });
 
+    console.log(req.cookies)
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: true
+    })
     res.status(201).json({
-      message: `Criado usuario ${data.name} com sucesso`,
-      token: token,
+      message: `Criado usuario ${data.username} com sucesso`
     });
   } catch (error) {
     if (error instanceof ZodError) {
