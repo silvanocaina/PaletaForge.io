@@ -68,13 +68,13 @@ router.post("/usuario", async (req, res) => {
       expiresIn: "7d",
     });
 
-    console.log(req.cookies)
-
+    // Define o token seguro
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,
       sameSite: true
     })
+
     res.status(201).json({
       message: `Criado usuario ${data.username} com sucesso`
     });
@@ -107,7 +107,7 @@ router.get("/usuario/:id", async (req, res) => {
 
     res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       switch (error.code) {
         case "P2025": // ID do usuario não foi achado no banco de dados
