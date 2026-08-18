@@ -1,6 +1,4 @@
-import express, { Router } from "express";
 import { PrismaClient, Prisma } from "../generated/prisma/client.js";
-import jwt from "jsonwebtoken";
 import {
   reply_status_400,
   reply_status_404,
@@ -11,20 +9,23 @@ import {
   get_single_user_dto,
   get_users_dto,
 } from "../helpers/database_helper.js";
-import { CreateUser } from "../schemas/user.js";
-import { ZodError } from "zod";
 import { createPasswordHash } from "../helpers/argon2.js";
 import { get_jwt_secret, JWT_SECRET_NAME } from "../helpers/env_helper.js";
+import { CreateUser } from "../schemas/user.js";
+
+import express, { Router } from "express";
+import jwt from "jsonwebtoken";
+import { ZodError } from "zod";
 
 const router = Router();
 const prisma = new PrismaClient();
 
 // ##############################
-// ###  Métodos para usuarios  ##
+// ###  Rotas para usuarios  ##
 // ##############################
 
 // Obtém todos os usuarios sanietizadas sem as informações sensiveis
-router.get("/usuarios", async (req, res) => {
+router.get("/userlist", async (req, res) => {
   try {
     const users = await get_users_dto(prisma);
     res.status(200).json(users);
@@ -33,12 +34,8 @@ router.get("/usuarios", async (req, res) => {
   }
 });
 
-// ############################
-// ##  Métodos para usuario  ##
-// ############################
-
-// para criar um usuario
-router.post("/usuario", async (req, res) => {
+// Para criar um novo usuario
+router.post("/users", async (req, res) => {
   try {
     // validamos os dados recebidos do frontend
     const data = CreateUser.parse({
@@ -69,14 +66,14 @@ router.post("/usuario", async (req, res) => {
     });
 
     // Define o token seguro
-    res.cookie('token', token, {
+    res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: true
-    })
+      sameSite: true,
+    });
 
     res.status(201).json({
-      message: `Criado usuario ${data.username} com sucesso`
+      message: `Criado usuario ${data.username} com sucesso`,
     });
   } catch (error) {
     if (error instanceof ZodError) {
@@ -101,7 +98,8 @@ router.post("/usuario", async (req, res) => {
   }
 });
 
-router.get("/usuario/:id", async (req, res) => {
+// Obtém um usuario especfico pelo id
+router.get("/users/:id", async (req, res) => {
   try {
     const user = await get_single_user_dto(prisma, req.params.id);
 
@@ -117,10 +115,7 @@ router.get("/usuario/:id", async (req, res) => {
           );
           return;
         case "P2023": // ID não é valido
-          reply_status_400(
-            res,
-            `Id ${req.params.id} não é valido`,
-          );
+          reply_status_400(res, `Id ${req.params.id} não é valido`);
           return;
       }
     }
@@ -128,21 +123,15 @@ router.get("/usuario/:id", async (req, res) => {
   }
 });
 
-router.put("/usuario/:id", async (req, res) => {
+router.delete("/usuarios/:id", async (req, res) => {
   try {
   } catch (e) {
     reply_status_500(res);
   }
 });
 
-router.patch("/usuario/:id", (req, res) => {
-  try {
-  } catch (e) {
-    reply_status_500(res);
-  }
-});
-
-router.delete("/usuario/:id", async (req, res) => {
+// Autenticar um usuario
+router.post("/auth/login", (req, res) => {
   try {
   } catch (e) {
     reply_status_500(res);
