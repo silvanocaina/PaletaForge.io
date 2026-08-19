@@ -11,7 +11,7 @@ As tecnologias usada no projeto
 No lado cliente
 </br>
 
-[![My Skills](https://skillicons.dev/icons?i=nodejs,react)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=vite,yarn,react)](https://skillicons.dev)
 ### Backend
 
 No lado servidor
@@ -36,6 +36,24 @@ Não há um deploy do projeto ainda por questão do backend
 
 
 ## Como configurar
+### Certificados
+
+Para gerar cerficados use o [mkcert](https://github.com/FiloSottile/mkcert)
+
+⚙️ Como gerar certificados
+```
+# na raiz do projeto
+
+# Gere a pasta para os certificados
+mkdir certs
+
+# use o comando abaixo para o mkcert instalar uma CA para assinar futuros certifados que serão reconhecido como seguro pelos browsers
+mkcert -install
+
+# use o comando abaixo para gerar os certificados
+mkcert localhost 127.0.0.1 ::1
+
+```
 ### FrontEnd
 ### BackEnd
 ⚙️ Como configurar o seu arquivo de ambiente
