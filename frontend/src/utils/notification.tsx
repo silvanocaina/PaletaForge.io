@@ -9,6 +9,6 @@ export const new_notification = (title: string, message: string) => {
 
 export function MyToastContainer() {
   return (
-    <ToastContainer position="bottom-right" autoClose={100000} closeButton={false} hideProgressBar={true} />
+    <ToastContainer position="bottom-right" autoClose={5000} closeButton={false} hideProgressBar={true} />
   );
 }
