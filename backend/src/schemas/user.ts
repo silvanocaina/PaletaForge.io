@@ -38,6 +38,6 @@ export const CreateUser = z.object({
 })
 
 export const AuthUser = z.object({
-  username: usernameRules,
+  email: emailRules,
   password: passwordRules,
 })
